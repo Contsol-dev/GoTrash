@@ -30,6 +30,7 @@ appIntro = "6.3.1"
 paging_version = "3.1.1"
 pagingCommonAndroid = "3.3.0"
 groupie = "2.10.1"
+legacySupportV4 = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -95,6 +96,7 @@ androidx-paging-common-android = { group = "androidx.paging", name = "paging-com
 #groupie
 groupie =  { group = "com.github.lisawray.groupie", name = "groupie", version.ref = "groupie" }
 groupie-databinding =  { group = "com.github.lisawray.groupie", name = "groupie-databinding", version.ref = "groupie" }
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
