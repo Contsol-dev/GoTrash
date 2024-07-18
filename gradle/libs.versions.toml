@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -10,27 +10,25 @@ material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 coil = "2.6.0"
-lifecycle = "2.7.0"
-fragment-ktx = "1.6.2"
+lifecycle = "2.8.3"
+fragment-ktx = "1.8.1"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 room = "2.6.1"
 ksp = "1.9.10-1.0.13"
 coroutine = "1.7.3"
 retrofit = "2.9.0"
-okhttp = "4.11.0"
-annotation = "1.6.0"
+okhttp = "4.12.0"
+annotation = "1.8.0"
 koin = "3.5.6"
 mockk = "1.13.10"
 coroutine-test = "1.7.2"
 turbine = "1.0.0"
 core-testing = "2.2.0"
 shimmer_version = "0.5.0"
-appIntro = "6.3.1"
-paging_version = "3.1.1"
-pagingCommonAndroid = "3.3.0"
-groupie = "2.10.1"
-legacySupportV4 = "1.0.0"
+googleServices = "4.4.2"
+firebaseAuth = "23.0.0"
+googleGmsGoogleServices = "4.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +39,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#gms
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 
 # coil image loader
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
@@ -86,19 +87,11 @@ core-testing = { group = "androidx.arch.core", name = "core-testing", version.re
 #shimmer
 shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmer_version" }
 
-#Intro
-appIntro = { group = "com.github.AppIntro", name = "AppIntro", version.ref = "appIntro" }
-
-#paging 3
-paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging_version" }
-androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
-
-#groupie
-groupie =  { group = "com.github.lisawray.groupie", name = "groupie", version.ref = "groupie" }
-groupie-databinding =  { group = "com.github.lisawray.groupie", name = "groupie-databinding", version.ref = "groupie" }
-androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+#firebase
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }

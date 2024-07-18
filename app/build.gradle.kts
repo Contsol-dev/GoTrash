@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -15,7 +16,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -56,7 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.room.ktx)
     implementation(libs.androidx.annotation)
-    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.firebase.auth)
     ksp(libs.room.compiler)
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
@@ -65,12 +65,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.koin.android)
     implementation(libs.shimmer)
-    implementation(libs.appIntro)
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-    implementation(libs.paging)
-    implementation(libs.androidx.paging.common.android)
-    implementation(libs.groupie)
-    implementation(libs.groupie.databinding)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

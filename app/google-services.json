@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936839118465",
+    "project_id": "gotrash-ec9f3",
+    "storage_bucket": "gotrash-ec9f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936839118465:android:75926f7634bfaa2604d780",
+        "android_client_info": {
+          "package_name": "com.adinda.gotrash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO-Z56bvNKh_HzSvdzOXK2NWpUMBqPLRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
