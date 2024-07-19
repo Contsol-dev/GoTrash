@@ -89,7 +89,7 @@ class SignupActivity : AppCompatActivity() {
     private fun checkUsernameValidation(username: String): Boolean {
         return if (username.isEmpty()) {
             binding.usernameLayout.isErrorEnabled = true
-            binding.usernameLayout.error = getString(R.string.text_error_email_empty)
+            binding.usernameLayout.error = getString(R.string.text_error_name_empty)
             false
         } else {
             binding.usernameLayout.isErrorEnabled = false

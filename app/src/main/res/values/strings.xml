@@ -28,4 +28,8 @@
     <string name="text_email">Email</string>
     <string name="text_sign_in_here">Sign up here</string>
     <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="name_profile">Name</string>
+    <string name="edit_profil">Edit</string>
+    <string name="text_error_name_empty">Username is Invalid</string>
 </resources>
