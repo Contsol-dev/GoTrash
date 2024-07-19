@@ -62,12 +62,12 @@ class LoginActivity : AppCompatActivity() {
         viewModel.doLogin(email = email, password = password).observe(this) {
             it.proceedWhen(
                 doOnSuccess = {
-                    //binding.pbLoadingLogin.isVisible = false
+                    binding.pbLoadingLogin.isVisible = false
                     binding.signInButton.isVisible = true
                     navigateToMain()
                 },
                 doOnError = {
-                    //binding.pbLoadingLogin.isVisible = false
+                    binding.pbLoadingLogin.isVisible = false
                     binding.signInButton.isVisible = true
                     Toast.makeText(
                         this,
@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 },
                 doOnLoading = {
-                    //binding.pbLoadingLogin.isVisible = true
+                    binding.pbLoadingLogin.isVisible = true
                     binding.signInButton.isVisible = false
                 },
             )

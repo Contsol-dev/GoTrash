@@ -41,6 +41,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_margin="23dp"
+        android:src="@drawable/img_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_profile"
@@ -53,6 +54,7 @@
         android:layout_marginTop="6dp"
         android:textSize="20sp"
         android:textStyle="bold"
+        tools:text="Nama"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_profile" />
@@ -62,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        tools:text="Email@gmail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
@@ -110,9 +113,10 @@
                         android:id="@+id/iv_edit"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:src="@drawable/ic_edit"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/design_default_color_primary" />
+                        app:tint="@color/black" />
 
                     <TextView
                         android:id="@+id/tv_edit_profile"
@@ -121,6 +125,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="8dp"
                         android:textSize="16sp"
+                        android:text="@string/text_edit_profile"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_edit"
                         app:layout_constraintTop_toTopOf="@id/iv_edit" />
@@ -145,9 +150,22 @@
                         android:id="@+id/iv_account_setting"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:src="@drawable/ic_setting"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/design_default_color_primary" />
+                        app:tint="@color/black" />
+                    <TextView
+                        android:id="@+id/tv_change_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/ganti_password"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_account_setting"
+                        app:layout_constraintTop_toTopOf="@id/iv_account_setting" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

@@ -2,6 +2,7 @@ package com.adinda.gotrash.presentation.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.adinda.gotrash.databinding.ActivitySplashBinding
@@ -23,11 +24,12 @@ class SplashActivity : AppCompatActivity() {
     }
     private fun setSplash() {
         lifecycleScope.launch {
-            delay(2000)
+            delay(3000)
             checkLogin()
         }
     }
     private fun checkLogin() {
+        Log.d("login", "checkLogin: ${viewModel.isLogin()}")
         if (!viewModel.isLogin()) navigateToLogin() else navigateToMain()
     }
 

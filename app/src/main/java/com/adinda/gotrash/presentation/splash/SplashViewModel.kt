@@ -4,5 +4,5 @@ import androidx.lifecycle.ViewModel
 import com.adinda.gotrash.data.repository.auth.AuthRepository
 
 class SplashViewModel(private val repository: AuthRepository) : ViewModel() {
-    fun isLogin() = repository.isLoggedIn()
+    fun isLogin(): Boolean  = repository.isLoggedIn()
 }
