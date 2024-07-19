@@ -19,4 +19,5 @@
     <string name="text_manage_your_waste">Manage Your Waste</string>
     <string name="version_1_0_0">version 1.0.0</string>
     <string name="text_logout">Logout</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
