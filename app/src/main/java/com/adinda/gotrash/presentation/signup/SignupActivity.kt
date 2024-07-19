@@ -32,6 +32,9 @@ class SignupActivity : AppCompatActivity() {
         binding.signUpButton.setOnClickListener {
             doRegister()
         }
+        binding.signInPrompt.setOnClickListener{
+            navigateToLogin()
+        }
     }
 
     private fun doRegister() {
@@ -47,19 +50,19 @@ class SignupActivity : AppCompatActivity() {
         viewModel.doRegister(username, email, password).observe(this){ it ->
             it.proceedWhen(
                 doOnSuccess = {
-                    //binding.pbLoadingRegister.isVisible = false
+                    binding.pbLoadingSignup.isVisible = false
                     binding.signUpButton.isVisible = true
                     navigateToLogin()
                 },
                 doOnError = {
-                    //binding.pbLoadingRegister.isVisible = false
+                    binding.pbLoadingSignup.isVisible = false
                     binding.signUpButton.isVisible = true
                     Toast.makeText(
                         this,
                         "Register Failed : ${it.exception?.message.orEmpty()}",Toast.LENGTH_SHORT).show()
                 },
                 doOnEmpty = {
-                    //binding.pbLoadingRegister.isVisible = false
+                    binding.pbLoadingSignup.isVisible = false
                     binding.signUpButton.isVisible = false
                 }
             )

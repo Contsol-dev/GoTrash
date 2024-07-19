@@ -6,30 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.splash.SplashActivity"
-    android:background="#00C853">
+    android:background="#2ECC71">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="60dp"
         android:src="@drawable/ic_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Trash"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintVertical_bias="0.289" />
 
     <TextView
         android:id="@+id/tagline"
@@ -37,16 +27,18 @@
         android:layout_height="wrap_content"
         android:text="@string/text_manage_your_waste"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/lf_loading"
+        android:layout_marginBottom="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tagline"
+        android:id="@+id/lf_loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
