@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.koin.android)
     implementation(libs.shimmer)
+    implementation(libs.lottiefiles)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

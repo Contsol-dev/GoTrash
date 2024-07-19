@@ -1,8 +1,8 @@
-package com.adinda.gotrash.presentation.splash
+package com.adinda.gotrash.presentation.main
 
 import androidx.lifecycle.ViewModel
 import com.adinda.gotrash.data.repository.auth.AuthRepository
 
-class SplashViewModel(private val repository: AuthRepository) : ViewModel() {
+class MainViewModel(private val repository: AuthRepository) : ViewModel() {
     fun isLogin() = repository.isLoggedIn()
 }

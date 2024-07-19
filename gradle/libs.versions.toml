@@ -29,6 +29,7 @@ shimmer_version = "0.5.0"
 googleServices = "4.4.2"
 firebaseAuth = "23.0.0"
 googleGmsGoogleServices = "4.4.2"
+lottie = "3.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -89,6 +90,8 @@ shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shi
 
 #firebase
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+#lottie
+lottiefiles = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

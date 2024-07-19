@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".presentation.main.MainActivity">
 
     <ImageView
         android:id="@+id/profile_icon"
@@ -14,8 +14,8 @@
         android:src="@drawable/ic_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintMarginTop="32dp"
-        app:layout_constraintMarginEnd="16dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:id="@+id/welcome_text"
@@ -26,20 +26,20 @@
         android:textColor="#616161"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginTop="32dp"
-        app:layout_constraintMarginStart="16dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/username_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adinda!"
+        tools:text="Adinda!"
         android:textSize="24sp"
         android:textColor="#00C853"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/welcome_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintMarginStart="16dp" />
+        android:layout_marginStart="16dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/status_card"
@@ -141,16 +141,6 @@
         app:layout_constraintTop_toBottomOf="@id/map_card"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintMarginTop="8dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_navigation_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

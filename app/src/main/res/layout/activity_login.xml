@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    tools:context=".presentation.login.LoginActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -15,19 +17,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="50dp" />
+        android:layout_marginTop="50dp"     />
 
     <TextView
         android:id="@+id/login_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login to your Account"
+        android:text="@string/text_login_to_your_account"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="16dp" />
+        android:layout_marginTop="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_layout"
@@ -36,13 +38,13 @@
         app:layout_constraintTop_toBottomOf="@id/login_prompt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="16dp">
+        android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/text_username"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,39 +55,51 @@
         app:layout_constraintTop_toBottomOf="@id/username_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="16dp">
+        android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/text_password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/sign_in_button"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/fl_btn_login"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:backgroundTint="#00C853"
-        android:textColor="#FFFFFF"
-        android:padding="12dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/password_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="24dp" />
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_sign_in"
+            android:backgroundTint="#00C853"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/pb_loading_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/sign_up_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don’t have an account? Sign up here"
+        android:text="@string/text_sign_in_ask"
         android:textColor="#00C853"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/sign_in_button"
+        app:layout_constraintTop_toBottomOf="@id/fl_btn_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_margin="16dp" />
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
