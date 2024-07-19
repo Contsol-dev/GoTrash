@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/menu_tab_home">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.adinda.gotrash.presentation.splash.SplashFragment"
-        android:label="SplashFragment" >
-        <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:id="@+id/menu_tab_notification"
+        android:name="com.adinda.gotrash.presentation.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.adinda.gotrash.presentation.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_signinFragment"
-            app:destination="@id/signinFragment" />
-    </fragment>
+        android:id="@+id/menu_tab_home"
+        android:name="com.adinda.gotrash.presentation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/signinFragment"
-        android:name="com.adinda.gotrash.presentation.signin.SigninFragment"
-        android:label="SigninFragment" />
+        android:id="@+id/menu_tab_profile"
+        android:name="com.adinda.gotrash.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
