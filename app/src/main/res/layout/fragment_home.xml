@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context=".presentation.main.MainActivity">
 
     <ImageView
@@ -51,65 +49,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_default="spread">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/left_arrow"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical" />
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status TPS"
+                android:textSize="16sp"
+                android:textColor="#00C853"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="8dp" />
 
-            <LinearLayout
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/status_value"
+                app:layout_constraintTop_toBottomOf="@id/status_text"
+                app:layout_constraintBottom_toTopOf="@+id/status_subtext"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/status_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:text="Value"
+                android:textSize="24sp"
+                android:textColor="#616161"
+                app:layout_constraintStart_toEndOf="@id/pieChart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/status_text"
+                app:layout_constraintBottom_toTopOf="@+id/status_subtext"
+                app:layout_constraintWidth_percent="0.5"
+                android:gravity="center" />
 
-                <TextView
-                    android:id="@+id/status_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-        
-                    android:textSize="16sp"
-                    android:textColor="#00C853"
-                    android:gravity="center" />
+            <TextView
+                android:id="@+id/status_subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TPS 001"
+                android:textSize="14sp"
+                android:textColor="#616161"
+                app:layout_constraintTop_toBottomOf="@id/pieChart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal" />
 
-                <ImageView
-                    android:id="@+id/status_chart"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center_horizontal" />
-
-                <TextView
-                    android:id="@+id/status_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3500 m3"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:gravity="center" />
-
-                <TextView
-                    android:id="@+id/status_subtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TPS 001"
-                    android:textSize="14sp"
-                    android:textColor="#616161"
-                    android:gravity="center" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/right_arrow"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -142,61 +137,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pickup_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/dist1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/dist2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/distavg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-        <TextView
-            android:id="@+id/distv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-        <TextView
-            android:id="@+id/height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-        <TextView
-            android:id="@+id/volume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#00C853"
-            android:gravity="center" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
