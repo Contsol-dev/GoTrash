@@ -33,6 +33,7 @@ googleGmsGoogleServices = "4.4.2"
 lottie = "3.4.0"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 playServicesMaps = "18.1.0"
+firebaseDatabase = "21.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -97,6 +98,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 #lottie
 lottiefiles = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

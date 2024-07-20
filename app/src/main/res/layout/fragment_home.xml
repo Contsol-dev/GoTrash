@@ -74,7 +74,7 @@
                     android:id="@+id/status_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status TPS"
+        
                     android:textSize="16sp"
                     android:textColor="#00C853"
                     android:gravity="center" />
@@ -142,5 +142,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pickup_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dist1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/dist2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/distavg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/distv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#00C853"
+            android:gravity="center" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
