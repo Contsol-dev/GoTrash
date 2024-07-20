@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx.v243)
     implementation (libs.mpandroidchart)
     implementation(libs.android.maps.utils)
     implementation(libs.android.maps.compose)

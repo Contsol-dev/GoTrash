@@ -13,13 +13,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.adinda.gotrash.R
+import com.adinda.gotrash.data.local.model.Notification
+import com.adinda.gotrash.data.local.room.NotificationDatabase
 import com.adinda.gotrash.databinding.FragmentHomeBinding
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -58,7 +61,19 @@ class HomeFragment : Fragment() {
             with(binding) {
                 statusValue.text = String.format("%.1f", it.volume) + " Cm³"
                 updatePieChart(it.volume.toFloat(), 6000f) // Contoh max value
+
+                // Check volume range and create notification if within range
+                if (it.volume >= 3000 && it.volume <= 6000) {
+                    createNotification("Trash Level Alert", "The trash volume is ${it.volume} Cm³")
+                }
             }
+        }
+    }
+
+    private fun createNotification(title: String, message: String) {
+        lifecycleScope.launch {
+            val notification = Notification(title = title, message = message)
+            NotificationDatabase.getDatabase(requireContext()).notificationDao().insert(notification)
         }
     }
 
