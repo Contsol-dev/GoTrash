@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adinda.gotrash.data.local.room.NotificationDatabase
 import com.adinda.gotrash.databinding.FragmentNotificationBinding
+import kotlinx.coroutines.launch
 
 class NotificationFragment : Fragment() {
 
@@ -27,7 +29,11 @@ class NotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = NotificationAdapter()
+        adapter = NotificationAdapter { notification ->
+            lifecycleScope.launch {
+                NotificationDatabase.getDatabase(requireContext()).notificationDao().update(notification)
+            }
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
 
