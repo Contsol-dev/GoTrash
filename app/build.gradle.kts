@@ -43,7 +43,9 @@ android {
 }
 
 dependencies {
-    implementation("com.google.maps.android:maps-compose:4.3.3")
+    implementation (libs.mpandroidchart)
+    implementation(libs.android.maps.utils)
+    implementation(libs.android.maps.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -61,6 +63,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.play.services.maps)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.location)
     ksp(libs.room.compiler)
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)

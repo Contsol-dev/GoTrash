@@ -32,4 +32,5 @@
     <string name="name_profile">Name</string>
     <string name="edit_profil">Edit</string>
     <string name="text_error_name_empty">Username is Invalid</string>
+    <string name="google_maps_key" translatable="false">AIzaSyAXVhPEduEOApU901IVOaZtsnMRiT8IyME</string>
 </resources>
