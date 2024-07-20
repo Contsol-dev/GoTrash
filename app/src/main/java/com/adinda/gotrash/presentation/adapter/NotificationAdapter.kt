@@ -4,16 +4,18 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.adinda.gotrash.data.local.model.Notification
 import com.adinda.gotrash.databinding.NotificationCardBinding
+import kotlinx.coroutines.launch
 
-class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
+class NotificationAdapter(private val updateNotification: (Notification) -> Unit) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
     private var notifications: List<Notification> = emptyList()
 
     fun setNotifications(notifications: List<Notification>) {
-        this.notifications = notifications
+        this.notifications = notifications.reversed()
         notifyDataSetChanged()
     }
 
@@ -33,8 +35,17 @@ class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.Notificatio
             binding.textViewTitle.text = notification.title
             binding.textViewMessage.text = notification.message
 
+            if (notification.isRead) {
+                binding.root.setCardBackgroundColor(Color.LTGRAY)
+                binding.buttonRead.visibility = View.GONE
+            } else {
+                binding.root.setCardBackgroundColor(Color.WHITE)
+                binding.buttonRead.visibility = View.VISIBLE
+            }
+
             binding.buttonRead.setOnClickListener {
-                // Set the CardView to passive state
+                notification.isRead = true
+                updateNotification(notification)
                 binding.root.setCardBackgroundColor(Color.LTGRAY)
                 binding.buttonRead.visibility = View.GONE
             }

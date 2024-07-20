@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Notification(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
-    val message: String
+    val message: String,
+    var isRead: Boolean = false
 )
