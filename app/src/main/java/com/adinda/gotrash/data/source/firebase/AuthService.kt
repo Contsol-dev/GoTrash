@@ -9,7 +9,7 @@ import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
 
-interface FirebaseService {
+interface AuthService {
     @Throws(exceptionClasses = [Exception::class])
     suspend fun doLogin(
         email: String,
@@ -38,7 +38,7 @@ interface FirebaseService {
     fun getCurrentUser(): FirebaseUser?
 }
 
-class FirebaseServiceImpl(private val firebaseAuth: FirebaseAuth) : FirebaseService {
+class AuthServiceImpl(private val firebaseAuth: FirebaseAuth) : AuthService {
     override suspend fun doLogin(
         email: String,
         password: String,

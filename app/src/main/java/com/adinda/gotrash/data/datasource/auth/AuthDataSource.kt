@@ -2,7 +2,7 @@ package com.adinda.gotrash.data.datasource.auth
 
 import com.adinda.gotrash.data.mapper.toUser
 import com.adinda.gotrash.data.model.User
-import com.adinda.gotrash.data.source.firebase.FirebaseService
+import com.adinda.gotrash.data.source.firebase.AuthService
 import java.lang.Exception
 
 
@@ -34,7 +34,7 @@ interface AuthDataSource {
     fun getCurrentUser(): User?
 }
 
-class AuthDataSourceImpl(private val service: FirebaseService) : AuthDataSource {
+class AuthDataSourceImpl(private val service: AuthService) : AuthDataSource {
     override suspend fun doLogin(
         email: String,
         password: String,

@@ -26,6 +26,20 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUsername()
         setupMapClickListener()
+        bindTpsData()
+    }
+
+    private fun bindTpsData() {
+        viewModel.trash.observe(viewLifecycleOwner) {
+            with(binding){
+                dist1.text = it.dist1.toString()
+                dist2.text = it.dist2.toString()
+                distavg.text = it.distavg.toString()
+                distv.text = it.distvl53l0x.toString()
+                height.text = it.trashheight.toString()
+                volume.text = it.volume.toString()
+            }
+        }
     }
 
     private fun setupUsername() {

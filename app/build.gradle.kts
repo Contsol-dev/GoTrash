@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.firebase.auth)
     implementation(libs.play.services.maps)
+    implementation(libs.firebase.database)
     ksp(libs.room.compiler)
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
