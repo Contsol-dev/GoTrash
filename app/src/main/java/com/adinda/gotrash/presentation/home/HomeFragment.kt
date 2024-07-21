@@ -1,5 +1,6 @@
 package com.adinda.gotrash.presentation.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,12 +19,14 @@ import com.adinda.gotrash.R
 import com.adinda.gotrash.data.local.model.Notification
 import com.adinda.gotrash.data.local.room.NotificationDatabase
 import com.adinda.gotrash.databinding.FragmentHomeBinding
+import com.adinda.gotrash.utils.DateUtils
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.time.Instant
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -57,31 +60,46 @@ class HomeFragment : Fragment() {
         setupPieChart()
     }
 
+    @SuppressLint("DefaultLocale")
     private fun bindTpsData() {
         viewModel.trash.observe(viewLifecycleOwner) {
             with(binding) {
-                val currentVolume = it.volume.toFloat()
-                val maxVolume = 6000f // Example max value
+                pbLoadingLogin.visibility = View.VISIBLE // Show loading state
 
-                statusValue.text = String.format("%.1f", currentVolume) + " Cm³"
-                updatePieChart(currentVolume, maxVolume)
+                if (it != null) {
+                    val currentVolume = it.volume.toFloat()
+                    val maxVolume = 6000f // Example max value
 
-                // Check volume range and create notification if within range
-                if (currentVolume >= 3000 && currentVolume <= maxVolume) {
-                    if (!notificationSent) {
-                        createNotification("Reminder!!", "Your trash bin in TPS 001 is full.")
-                        notificationSent = true
+                    statusValue.text = String.format("%.1f", currentVolume) + " Cm³"
+                    updatePieChart(currentVolume, maxVolume)
+
+                    // Show PieChart and statusValue
+                    pieChart.visibility = View.VISIBLE
+                    statusValue.visibility = View.VISIBLE
+                    statusText.visibility = View.VISIBLE
+                    statusSubtext.visibility = View.VISIBLE
+
+                    // Check volume range and create notification if within range
+                    if (currentVolume >= 3000 && currentVolume <= maxVolume) {
+                        if (!notificationSent) {
+                            createNotification("Reminder!!", "Your trash bin in TPS 001 is full.")
+                            notificationSent = true
+                        }
+                    } else {
+                        notificationSent = false
                     }
-                } else {
-                    notificationSent = false
                 }
+
+                pbLoadingLogin.visibility = View.GONE // Hide loading state after processing
             }
         }
     }
 
     private fun createNotification(title: String, message: String) {
         lifecycleScope.launch {
-            val notification = Notification(title = title, message = message)
+            val currentTimeDate = DateUtils.formatDate(Instant.now().toString())
+            val currentTime = DateUtils.formatTime(Instant.now().toString())
+            val notification = Notification(title = title, message = message, time = "$currentTimeDate $currentTime")
             NotificationDatabase.getDatabase(requireContext()).notificationDao().insert(notification)
         }
     }
@@ -111,8 +129,9 @@ class HomeFragment : Fragment() {
         dataSet.setDrawValues(true) // Enable value text
 
         // Adding shadow
+        @Suppress("DEPRECATION")
         pieChart.setDrawSliceText(false)
-        pieChart.setDrawHoleEnabled(false)
+        pieChart.isDrawHoleEnabled = false
         pieChart.setDrawEntryLabels(true)
         pieChart.setEntryLabelColor(ContextCompat.getColor(requireContext(), R.color.black))
         pieChart.setDrawSlicesUnderHole(false)
@@ -168,4 +187,3 @@ class HomeFragment : Fragment() {
         }
     }
 }
-

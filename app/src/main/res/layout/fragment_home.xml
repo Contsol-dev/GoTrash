@@ -7,16 +7,6 @@
     android:background="@color/white"
     tools:context=".presentation.main.MainActivity">
 
-    <ImageView
-        android:id="@+id/profile_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_profile"
-        app:layout_constraintTop_toTopOf ="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp" />
-
     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
@@ -44,7 +34,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/status_card"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -56,6 +46,23 @@
         app:layout_constraintTop_toBottomOf="@id/username_text"
         app:layout_constraintWidth_default="spread">
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/pb_loading_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:indeterminate="true"
+            android:visibility="visible"
+            app:indicatorColor="@color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -66,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Status TPS"
+                android:visibility="gone"
                 android:textColor="#00C853"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_marginEnd="8dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/status_subtext"
                 app:layout_constraintEnd_toStartOf="@+id/status_value"
                 app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +100,7 @@
                 android:text="3500 m3"
                 android:textColor="#616161"
                 android:textSize="24sp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/status_subtext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/pieChart"
@@ -104,6 +114,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
                 android:text="TPS 001"
+                android:visibility="gone"
                 android:textColor="#616161"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"

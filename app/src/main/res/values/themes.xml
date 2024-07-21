@@ -9,4 +9,17 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
+    <style name="Widget.MyApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/green</item>
+        <item name="colorControlActivated">@color/green</item>
+    </style>
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/CustomDialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/CustomDialogButtonStyle</item>
+    </style>
+
+    <style name="CustomDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/green</item> <!-- Set your desired color here -->
+    </style>
+
 </resources>

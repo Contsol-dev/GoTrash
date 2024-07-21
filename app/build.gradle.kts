@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -13,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.adinda.gotrash"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -40,12 +42,16 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    packagingOptions {
+        exclude ("META-INF/LICENSE-notice.md")
+        exclude ("META-INF/LICENSE.md")
+    }
 }
 
 dependencies {
-    implementation (libs.androidx.room.runtime)
-    implementation (libs.androidx.room.ktx.v243)
-    implementation (libs.mpandroidchart)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx.v243)
+    implementation(libs.mpandroidchart)
     implementation(libs.android.maps.utils)
     implementation(libs.android.maps.compose)
     implementation(libs.androidx.core.ktx)

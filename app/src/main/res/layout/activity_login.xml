@@ -38,7 +38,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_prompt">
+        app:layout_constraintTop_toBottomOf="@id/login_prompt"
+        style="@style/Widget.MyApp.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
@@ -55,7 +56,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_layout">
+        app:layout_constraintTop_toBottomOf="@id/username_layout"
+        style="@style/Widget.MyApp.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -89,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminate="true"
+            app:indicatorColor="@color/green"
             android:visibility="gone" />
     </FrameLayout>
 
