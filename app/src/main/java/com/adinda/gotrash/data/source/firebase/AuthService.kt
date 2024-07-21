@@ -25,12 +25,6 @@ interface AuthService {
 
     suspend fun updateProfile(fullName: String? = null): Boolean
 
-    suspend fun updatePassword(newPassword: String): Boolean
-
-    suspend fun updateEmail(newEmail: String): Boolean
-
-    fun requestChangePasswordByEmail(): Boolean
-
     suspend fun doLogout(): Boolean
 
     fun isLoggedIn(): Boolean
@@ -69,23 +63,6 @@ class AuthServiceImpl(private val firebaseAuth: FirebaseAuth) : AuthService {
                 }
             },
         )?.await()
-        return true
-    }
-
-    override suspend fun updatePassword(newPassword: String): Boolean {
-        getCurrentUser()?.updatePassword(newPassword)?.await()
-        return true
-    }
-
-    override suspend fun updateEmail(newEmail: String): Boolean {
-        getCurrentUser()?.verifyBeforeUpdateEmail(newEmail)?.await()
-        return true
-    }
-
-    override fun requestChangePasswordByEmail(): Boolean {
-        getCurrentUser()?.email?.let {
-            firebaseAuth.sendPasswordResetEmail(it)
-        }
         return true
     }
 

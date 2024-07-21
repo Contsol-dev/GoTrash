@@ -1,11 +1,14 @@
 package com.adinda.gotrash.presentation.profile.edit
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.adinda.gotrash.R
 import com.adinda.gotrash.databinding.ActivityEditNameBinding
+import com.adinda.gotrash.presentation.login.LoginActivity
+import com.adinda.gotrash.presentation.profile.ProfileFragment
 import com.adinda.gotrash.utils.proceedWhen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,7 +50,7 @@ class EditNameActivity : AppCompatActivity() {
             it.proceedWhen(
                 doOnSuccess = {
                     Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show()
-                    finish()
+                    navigateToProfile()
                 },
                 doOnLoading = {
                     binding.btnSaveEditProfile.isVisible = false
@@ -58,6 +61,14 @@ class EditNameActivity : AppCompatActivity() {
                 }
             )
         }
+    }
+
+    private fun navigateToProfile() {
+        startActivity(
+            Intent(this, ProfileFragment::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            },
+        )
     }
 
     private fun isFormValid(): Boolean {

@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import com.adinda.gotrash.R
 import com.adinda.gotrash.databinding.ActivitySignupBinding
 import com.adinda.gotrash.presentation.login.LoginActivity
+import com.adinda.gotrash.utils.FirebaseAuthExceptionHandler
 import com.adinda.gotrash.utils.proceedWhen
 import com.google.android.material.textfield.TextInputLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,9 +58,9 @@ class SignupActivity : AppCompatActivity() {
                 doOnError = {
                     binding.pbLoadingSignup.isVisible = false
                     binding.signUpButton.isVisible = true
-                    Toast.makeText(
-                        this,
-                        "Register Failed : ${it.exception?.message.orEmpty()}",Toast.LENGTH_SHORT).show()
+                    Log.e("SignupGagal", it.exception?.message.toString())
+                    val errorMessage = FirebaseAuthExceptionHandler.getErrorMessage(it.exception!!.message.toString())
+                    Toast.makeText(this, "Register Failed: $errorMessage", Toast.LENGTH_SHORT).show()
                 },
                 doOnEmpty = {
                     binding.pbLoadingSignup.isVisible = false
