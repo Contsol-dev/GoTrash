@@ -21,13 +21,6 @@ interface AuthDataSource {
     ): Boolean
 
     suspend fun updateProfile(fullName: String? = null): Boolean
-
-    suspend fun updatePassword(newPassword: String): Boolean
-
-    suspend fun updateEmail(newEmail: String): Boolean
-
-    fun requestChangePasswordByEmail(): Boolean
-
     suspend fun doLogout(): Boolean
 
     fun isLoggedIn(): Boolean
@@ -52,18 +45,6 @@ class AuthDataSourceImpl(private val service: AuthService) : AuthDataSource {
 
     override suspend fun updateProfile(fullName: String?): Boolean {
         return service.updateProfile(fullName)
-    }
-
-    override suspend fun updatePassword(newPassword: String): Boolean {
-        return service.updatePassword(newPassword)
-    }
-
-    override suspend fun updateEmail(newEmail: String): Boolean {
-        return service.updateEmail(newEmail)
-    }
-
-    override fun requestChangePasswordByEmail(): Boolean {
-        return service.requestChangePasswordByEmail()
     }
 
     override suspend fun doLogout(): Boolean {

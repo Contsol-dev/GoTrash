@@ -2,6 +2,7 @@ package com.adinda.gotrash.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +11,10 @@ import com.adinda.gotrash.presentation.main.MainActivity
 import com.adinda.gotrash.R
 import com.adinda.gotrash.databinding.ActivityLoginBinding
 import com.adinda.gotrash.presentation.signup.SignupActivity
+import com.adinda.gotrash.utils.FirebaseAuthExceptionHandler
 import com.adinda.gotrash.utils.proceedWhen
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuthException
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -69,11 +72,9 @@ class LoginActivity : AppCompatActivity() {
                 doOnError = {
                     binding.pbLoadingLogin.isVisible = false
                     binding.signInButton.isVisible = true
-                    Toast.makeText(
-                        this,
-                        "Login Failed : ${it.exception?.message.orEmpty()}",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    Log.e("LoginGagal", it.exception?.message.toString())
+                    val errorMessage = FirebaseAuthExceptionHandler.getErrorMessage(it.exception!!.message.toString())
+                    Toast.makeText(this, "Login Failed: $errorMessage", Toast.LENGTH_SHORT).show()
                 },
                 doOnLoading = {
                     binding.pbLoadingLogin.isVisible = true
