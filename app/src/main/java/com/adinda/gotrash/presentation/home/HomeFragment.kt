@@ -20,7 +20,6 @@ import com.adinda.gotrash.R
 import com.adinda.gotrash.data.local.model.Notification
 import com.adinda.gotrash.data.local.room.NotificationDatabase
 import com.adinda.gotrash.databinding.FragmentHomeBinding
-import com.adinda.gotrash.utils.NetworkLiveData
 import com.adinda.gotrash.utils.DateUtils
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -36,9 +35,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var pieChart: PieChart
     private var notificationSent = false // Flag to track notification state
-    private val networkLiveData: NetworkLiveData by lazy {
-        NetworkLiveData(requireContext())
-    }
+
     private val requestLocationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
@@ -63,35 +60,6 @@ class HomeFragment : Fragment() {
         setupMapClickListener()
         bindTpsData()
         setupPieChart()
-        networkLiveData.observe(viewLifecycleOwner) { isConnected ->
-            checkNetworkAndFetchData(isConnected)
-        }
-    }
-
-    private fun checkNetworkAndFetchData(isConnected: Boolean) {
-        if (isConnected) {
-            lifecycleScope.launch {
-                delay(2000)
-                binding.llNoInternet.visibility = View.GONE
-                showData()
-                bindTpsData()
-            }
-        } else {
-            hideData()
-            binding.llNoInternet.visibility = View.VISIBLE
-        }
-    }
-
-    private fun hideData() {
-        binding.statusCard.visibility = View.GONE
-        binding.mapCard.visibility = View.GONE
-        binding.pickupText.visibility = View.GONE
-    }
-
-    private fun showData() {
-        binding.statusCard.visibility = View.VISIBLE
-        binding.mapCard.visibility = View.VISIBLE
-        binding.pickupText.visibility = View.VISIBLE
     }
 
     @SuppressLint("DefaultLocale")
@@ -131,9 +99,6 @@ class HomeFragment : Fragment() {
 
     private fun createNotification(title: String, message: String) {
         lifecycleScope.launch {
-            val notification = Notification(title = title, message = message)
-            NotificationDatabase.getDatabase(requireContext()).notificationDao()
-                .insert(notification)
             val currentTimeDate = DateUtils.formatDate(Instant.now().toString())
             val currentTime = DateUtils.formatTime(Instant.now().toString())
             val notification = Notification(title = title, message = message, time = "$currentTimeDate $currentTime")
@@ -188,8 +153,7 @@ class HomeFragment : Fragment() {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     android.Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+                ) == PackageManager.PERMISSION_GRANTED) {
                 checkAndEnableGPS()
             } else {
                 requestLocationPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -198,8 +162,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkAndEnableGPS() {
-        val locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
         if (!isGPSEnabled) {
