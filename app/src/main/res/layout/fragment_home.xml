@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".presentation.main.MainActivity">
 
     <ImageView
@@ -10,7 +12,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_profile"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf ="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp" />
@@ -43,87 +45,98 @@
         android:id="@+id/status_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/username_text"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username_text"
         app:layout_constraintWidth_default="spread">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/status_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Status TPS"
-                android:textSize="16sp"
                 android:textColor="#00C853"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="8dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/status_value"
-                app:layout_constraintTop_toBottomOf="@id/status_text"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/status_subtext"
-                app:layout_constraintWidth_percent="0.5"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintEnd_toStartOf="@+id/status_value"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/status_text"
+                app:layout_constraintWidth_percent="0.5" />
 
             <TextView
                 android:id="@+id/status_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Value"
-                android:textSize="24sp"
+                android:gravity="center"
+                android:text="3500 m3"
                 android:textColor="#616161"
-                app:layout_constraintStart_toEndOf="@id/pieChart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/status_text"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/status_subtext"
-                app:layout_constraintWidth_percent="0.5"
-                android:gravity="center" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pieChart"
+                app:layout_constraintTop_toBottomOf="@id/status_text"
+                app:layout_constraintWidth_percent="0.5" />
 
             <TextView
                 android:id="@+id/status_subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TPS 001"
-                android:textSize="14sp"
-                android:textColor="#616161"
-                app:layout_constraintTop_toBottomOf="@id/pieChart"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
-                android:layout_gravity="center_horizontal" />
+                android:text="TPS 001"
+                android:textColor="#616161"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pieChart" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/map_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/status_card"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/white"
+        app:layout_constraintDimensionRatio="H,16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="spread"
-        app:layout_constraintDimensionRatio="H,16:9">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/status_card">
 
         <ImageView
             android:id="@+id/map_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_map" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_map"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/pickup_text"

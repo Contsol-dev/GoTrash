@@ -1,14 +1,16 @@
 package com.adinda.gotrash.presentation.notification
 
-import android.graphics.Color
+import android.app.NotificationManager
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.adinda.gotrash.R
 import com.adinda.gotrash.data.local.model.Notification
 import com.adinda.gotrash.databinding.NotificationCardBinding
-import kotlinx.coroutines.launch
 
 class NotificationAdapter(private val updateNotification: (Notification) -> Unit) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
@@ -36,19 +38,39 @@ class NotificationAdapter(private val updateNotification: (Notification) -> Unit
             binding.textViewMessage.text = notification.message
 
             if (notification.isRead) {
-                binding.root.setCardBackgroundColor(Color.LTGRAY)
-                binding.buttonRead.visibility = View.GONE
+                binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.passiveBackground))
+                binding.textViewTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                binding.textViewMessage.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                binding.imageViewIcon.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.passiveText)) // Set trash icon to gray
+                binding.tvRead.visibility = View.GONE
             } else {
-                binding.root.setCardBackgroundColor(Color.WHITE)
-                binding.buttonRead.visibility = View.VISIBLE
+                showNotification(binding.root.context, notification.title, notification.message)
+                binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.activeBackground))
+                binding.textViewTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.activeText))
+                binding.textViewMessage.setTextColor(ContextCompat.getColor(binding.root.context, R.color.activeText))
+                binding.imageViewIcon.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.activeText)) // Set trash icon to default color
+                binding.tvRead.visibility = View.VISIBLE
             }
 
-            binding.buttonRead.setOnClickListener {
+            binding.tvRead.setOnClickListener {
                 notification.isRead = true
                 updateNotification(notification)
-                binding.root.setCardBackgroundColor(Color.LTGRAY)
-                binding.buttonRead.visibility = View.GONE
+                binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.passiveBackground))
+                binding.textViewTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                binding.textViewMessage.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                binding.imageViewIcon.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.passiveText)) // Set trash icon to gray
+                binding.tvRead.visibility = View.GONE
             }
         }
+    }
+    private fun showNotification(context: Context, title: String, message: String) {
+        val builder = NotificationCompat.Builder(context, "TrashNotificationChannel")
+            .setSmallIcon(R.drawable.ic_trash)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1, builder.build())
     }
 }

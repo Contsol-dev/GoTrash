@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var pieChart: PieChart
+    private var notificationSent = false // Flag to track notification state
 
     private val requestLocationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -59,12 +60,20 @@ class HomeFragment : Fragment() {
     private fun bindTpsData() {
         viewModel.trash.observe(viewLifecycleOwner) {
             with(binding) {
-                statusValue.text = String.format("%.1f", it.volume) + " Cm³"
-                updatePieChart(it.volume.toFloat(), 6000f) // Contoh max value
+                val currentVolume = it.volume.toFloat()
+                val maxVolume = 6000f // Example max value
+
+                statusValue.text = String.format("%.1f", currentVolume) + " Cm³"
+                updatePieChart(currentVolume, maxVolume)
 
                 // Check volume range and create notification if within range
-                if (it.volume >= 3000 && it.volume <= 6000) {
-                    createNotification("Trash Level Alert", "The trash volume is ${it.volume} Cm³")
+                if (currentVolume >= 3000 && currentVolume <= maxVolume) {
+                    if (!notificationSent) {
+                        createNotification("Reminder!!", "Your trash bin in TPS 001 is full.")
+                        notificationSent = true
+                    }
+                } else {
+                    notificationSent = false
                 }
             }
         }
@@ -144,18 +153,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun openGoogleMaps() {
-        val latitude = -7.782167 // Ganti dengan latitude yang diinginkan
-        val longitude = 110.415181 // Ganti dengan longitude yang diinginkan
+        val latitude = -7.782167 // Replace with the desired latitude
+        val longitude = 110.415181 // Replace with the desired longitude
         val gmmIntentUri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
             startActivity(mapIntent)
         } else {
-            // Jika aplikasi Google Maps tidak tersedia, Anda bisa menampilkan pesan atau mengambil tindakan lain
-            // Misalnya, buka browser dengan URL Google Maps
+            // If Google Maps app is not available, you can display a message or take another action
+            // For example, open the browser with the Google Maps URL
             val browserIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             startActivity(browserIntent)
         }
     }
 }
+

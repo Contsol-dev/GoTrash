@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".App"
@@ -35,11 +37,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAXVhPEduEOApU901IVOaZtsnMRiT8IyME" />
-
-        <activity
-            android:name=".presentation.maps.MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true">
@@ -58,6 +55,18 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="false" />
+        <service
+            android:name=".data.network.service.NotificationService"
+            android:exported="false" />
+
+        <receiver android:name=".data.network.service.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
