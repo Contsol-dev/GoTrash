@@ -16,11 +16,13 @@
             android:id="@+id/imageViewIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/ic_trash"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="8dp" />
+            app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -32,7 +34,7 @@
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/imageViewIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/buttonRead"
+            app:layout_constraintEnd_toStartOf="@id/tvRead"
             app:layout_constraintBottom_toTopOf="@id/textViewMessage"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0" />
@@ -41,7 +43,7 @@
             android:id="@+id/textViewMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Your trash bin in TPS 002 is full.\nPlease empty it to avoid overflow!"
+            android:text="Your trash bin in TPS 002 is full."
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle"
@@ -50,15 +52,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0" />
 
-        <Button
-            android:id="@+id/buttonRead"
+        <TextView
+            android:id="@+id/tvRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Read"
+            android:layout_marginStart="8dp"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:text="Mark as Read"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:textSize="14sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

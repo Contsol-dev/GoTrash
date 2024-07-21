@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.adinda.gotrash.R
+import com.adinda.gotrash.data.network.service.NotificationService
 import com.adinda.gotrash.databinding.ActivityMainBinding
 import com.adinda.gotrash.presentation.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupBottomNav()
+        val serviceIntent = Intent(this, NotificationService::class.java)
+        startService(serviceIntent)
     }
+
 
     private fun setupBottomNav() {
         val navController = findNavController(R.id.nav_host_fragment)

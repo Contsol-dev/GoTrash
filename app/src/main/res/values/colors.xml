@@ -3,4 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#2ECC71</color>
+    <color name="grey">@android:color/darker_gray</color>
+    <!-- Active state colors -->
+    <color name="activeBackground">#FFFFFF</color>
+    <color name="activeText">#000000</color>
+
+    <!-- Passive state colors -->
+    <color name="passiveBackground">#ECEFF1</color>
+    <color name="passiveText">#757575</color>
 </resources>
