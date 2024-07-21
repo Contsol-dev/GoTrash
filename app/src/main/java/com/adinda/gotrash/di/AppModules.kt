@@ -16,7 +16,6 @@ import com.adinda.gotrash.presentation.home.HomeViewModel
 import com.adinda.gotrash.presentation.login.LoginViewModel
 import com.adinda.gotrash.presentation.main.MainViewModel
 import com.adinda.gotrash.presentation.profile.ProfileViewModel
-import com.adinda.gotrash.presentation.profile.edit.EditNameViewModel
 import com.adinda.gotrash.presentation.signup.SignupViewModel
 import com.adinda.gotrash.presentation.splash.SplashViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -66,7 +65,6 @@ object AppModules {
             viewModelOf(::HomeViewModel)
             viewModelOf(::SplashViewModel)
             viewModelOf(::ProfileViewModel)
-            viewModelOf(::EditNameViewModel)
 
         }
 
