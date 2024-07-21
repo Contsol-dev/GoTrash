@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun doLogout() {
-        MaterialAlertDialogBuilder(requireContext())
+        MaterialAlertDialogBuilder(requireContext(), R.style.CustomAlertDialogTheme)
             .setMessage(getString(R.string.are_you_sure))
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 proceedLogout()
@@ -53,6 +53,7 @@ class ProfileFragment : Fragment() {
             .setNegativeButton(getString(R.string.no), null)
             .show()
     }
+
 
     private fun proceedLogout() {
         viewModel.doLogout().observe(viewLifecycleOwner) {

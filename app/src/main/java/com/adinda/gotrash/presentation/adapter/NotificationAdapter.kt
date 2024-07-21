@@ -36,13 +36,15 @@ class NotificationAdapter(private val updateNotification: (Notification) -> Unit
         fun bind(notification: Notification) {
             binding.textViewTitle.text = notification.title
             binding.textViewMessage.text = notification.message
+            binding.textViewDate.text = notification.time
 
             if (notification.isRead) {
-                binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.passiveBackground))
-                binding.textViewTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
-                binding.textViewMessage.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
-                binding.imageViewIcon.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.passiveText)) // Set trash icon to gray
-                binding.tvRead.visibility = View.GONE
+                binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                        binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.passiveBackground))
+                        binding.textViewTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                        binding.textViewMessage.setTextColor(ContextCompat.getColor(binding.root.context, R.color.passiveText))
+                        binding.imageViewIcon.setColorFilter(ContextCompat.getColor(binding.root.context, R.color.passiveText)) // Set trash icon to gray
+                        binding.tvRead.visibility = View.GONE
             } else {
                 showNotification(binding.root.context, notification.title, notification.message)
                 binding.root.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.activeBackground))
@@ -63,6 +65,7 @@ class NotificationAdapter(private val updateNotification: (Notification) -> Unit
             }
         }
     }
+
     private fun showNotification(context: Context, title: String, message: String) {
         val builder = NotificationCompat.Builder(context, "TrashNotificationChannel")
             .setSmallIcon(R.drawable.ic_trash)

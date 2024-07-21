@@ -8,5 +8,6 @@ data class Notification(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val message: String,
+    val time: String,
     var isRead: Boolean = false
 )
