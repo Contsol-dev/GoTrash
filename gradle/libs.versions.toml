@@ -40,6 +40,7 @@ playServicesMaps = "18.1.0"
 firebaseDatabase = "21.0.0"
 playServicesLocation = "21.3.0"
 uiDesktop = "1.6.8"
+firebaseMessaging = "24.0.0"
 
 [libraries]
 android-maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
@@ -112,6 +113,7 @@ play-services-maps = { group = "com.google.android.gms", name = "play-services-m
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 androidx-ui-desktop = { group = "androidx.compose.ui", name = "ui-desktop", version.ref = "uiDesktop" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
