@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.adinda.gotrash.R
 import com.adinda.gotrash.databinding.FragmentProfileBinding
 import com.adinda.gotrash.presentation.login.LoginActivity
-import com.adinda.gotrash.presentation.profile.edit.EditNameActivity
 import com.adinda.gotrash.utils.proceedWhen
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,15 +41,6 @@ class ProfileFragment : Fragment() {
         binding.cvLogout.setOnClickListener {
             doLogout()
         }
-        binding.cvEditProfile.setOnClickListener {
-            navigateToEdit()
-        }
-    }
-
-    private fun navigateToEdit() {
-        startActivity(
-            Intent(requireContext(), EditNameActivity::class.java)
-        )
     }
 
     private fun doLogout() {
