@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adinda.gotrash.R
 import com.adinda.gotrash.data.model.Notification
 import com.adinda.gotrash.databinding.NotificationCardBinding
+import com.adinda.gotrash.utils.DateUtils.timeAgo
+
 class NotificationsAdapter(
     private val onReadClick: (Int) -> Unit // Add this line
 ) : RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>() {
@@ -63,8 +65,8 @@ class NotificationsAdapter(
         private val binding: NotificationCardBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(notification: Notification) {
-            binding.textViewDate.text = notification.sentAt
-            if (notification.isRead) {
+            binding.textViewDate.text = timeAgo(notification.sentAt)
+            if (notification.isRead == 1) {
                 binding.root.setCardBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,

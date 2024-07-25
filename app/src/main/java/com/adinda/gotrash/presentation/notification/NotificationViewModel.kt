@@ -1,5 +1,6 @@
 package com.adinda.gotrash.presentation.notification
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,14 +36,14 @@ class NotificationViewModel(
             when (val result = notificationRepository.markAsRead(notificationId)) {
                 is ResultWrapper.Success -> {
                     val updatedNotifications = _notifications.value?.payload?.map {
-                        if (it.id == notificationId) it.copy(isRead = true) else it
+                        if (it.id == notificationId) it.copy(isRead = 1) else it
                     }
                     _notifications.value = ResultWrapper.Success(updatedNotifications ?: emptyList())
                 }
-                is ResultWrapper.Error -> TODO()
-                is ResultWrapper.Empty -> TODO()
-                is ResultWrapper.Idle -> TODO()
-                is ResultWrapper.Loading -> TODO()
+
+                else -> {
+                    Log.e("ErrorNotification", "Error Gatau")
+                }
             }
         }
     }

@@ -13,5 +13,5 @@ data class NotificationResponseItem(
     @SerializedName("volume")
     val volume: Int?,
     @SerializedName("is_read")
-    val isRead: Boolean
+    val isRead: Int
 )

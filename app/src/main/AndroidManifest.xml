@@ -18,6 +18,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_logo_transparent"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoTrash"
         tools:targetApi="31">

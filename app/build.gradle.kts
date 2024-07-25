@@ -50,14 +50,14 @@ android {
             buildConfigField(
                 type = "String",
                 name ="BASE_URL",
-                value = "\"http://192.168.1.7:3000/\""
+                value = "\"http://192.168.211.125:3000/\""
             )
         }
         create("integration") {
             buildConfigField(
                 type = "String",
                 name ="BASE_URL",
-                value = "\"http://192.168.1.7:3000/\""
+                value = "\"http://192.168.211.125:3000/\""
             )
         }
     }
