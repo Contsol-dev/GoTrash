@@ -4,5 +4,5 @@ data class Notification(
     val id: Int,
     val volume: String,
     val sentAt: String,
-    var isRead: Boolean
+    var isRead: Int
 )

@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
@@ -13,7 +14,7 @@ interface ApiService {
     @GET("get-notif")
     suspend fun getNotification(): List<NotificationResponseItem>
 
-    @GET("mark-as-read")
+    @PUT("mark-as-read/{id}")
     suspend fun markAsRead(
         @Path("id") id: Int,
     )

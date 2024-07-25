@@ -1,6 +1,7 @@
 package com.adinda.gotrash.presentation.notification
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class NotificationFragment : Fragment() {
                         getString(R.string.error_notif),
                         Toast.LENGTH_SHORT,
                     ).show()
+                    Log.e("ErrorNotif", it.exception?.message.toString())
                 }
             )
         }
