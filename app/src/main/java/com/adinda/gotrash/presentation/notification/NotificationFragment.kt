@@ -4,19 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.adinda.gotrash.data.local.room.NotificationDatabase
+import com.adinda.gotrash.R
+import com.adinda.gotrash.data.model.Notification
 import com.adinda.gotrash.databinding.FragmentNotificationBinding
-import kotlinx.coroutines.launch
+import com.adinda.gotrash.presentation.notification.adapter.NotificationsAdapter
+import com.adinda.gotrash.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotificationFragment : Fragment() {
 
-    private val viewModel: NotificationViewModel by viewModels()
+    private val viewModel: NotificationViewModel by viewModel()
     private lateinit var binding: FragmentNotificationBinding
-    private lateinit var adapter: NotificationAdapter
+    private val notificationAdapter: NotificationsAdapter by lazy {
+        NotificationsAdapter { id ->
+            viewModel.markAsRead(id)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,17 +34,35 @@ class NotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setNotification()
+        fetchNotification()
+    }
 
-        adapter = NotificationAdapter { notification ->
-            lifecycleScope.launch {
-                NotificationDatabase.getDatabase(requireContext()).notificationDao().update(notification)
-            }
+    private fun fetchNotification() {
+        viewModel.notifications.observe(viewLifecycleOwner) {
+            it.proceedWhen(
+                doOnSuccess = {
+                    it.payload?.let { data -> submitData(data) }
+                },
+                doOnError = {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.error_notif),
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            )
         }
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter
+    }
 
-        NotificationDatabase.getDatabase(requireContext()).notificationDao().getAllNotifications().observe(viewLifecycleOwner) {
-            adapter.setNotifications(it)
+    private fun submitData(data: List<Notification>) {
+        notificationAdapter.submitDataNotification(data)
+    }
+
+    private fun setNotification() {
+        binding.recyclerView.apply {
+            adapter = notificationAdapter
+            layoutManager = LinearLayoutManager(context)
         }
     }
 }

@@ -41,9 +41,27 @@ android {
         buildConfig = true
     }
     packagingOptions {
-        exclude ("META-INF/LICENSE-notice.md")
-        exclude ("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/LICENSE.md")
     }
+    flavorDimensions += "env"
+    productFlavors {
+        create("production") {
+            buildConfigField(
+                type = "String",
+                name ="BASE_URL",
+                value = "\"http://192.168.1.7:3000/\""
+            )
+        }
+        create("integration") {
+            buildConfigField(
+                type = "String",
+                name ="BASE_URL",
+                value = "\"http://192.168.1.7:3000/\""
+            )
+        }
+    }
+
 }
 
 dependencies {
@@ -70,6 +88,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.firebase.database)
     implementation(libs.play.services.location)
+    implementation(libs.firebase.messaging)
     ksp(libs.room.compiler)
     implementation(libs.coroutine.core)
     implementation(libs.coroutine.android)
@@ -79,7 +98,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.shimmer)
     implementation(libs.lottiefiles)
-
+    implementation(platform(libs.firebase.bom))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
