@@ -40,6 +40,8 @@ playServicesMaps = "18.1.0"
 firebaseDatabase = "21.0.0"
 playServicesLocation = "21.3.0"
 uiDesktop = "1.6.8"
+firebaseMessaging = "24.0.0"
+firebase-bom = "32.1.0"
 
 [libraries]
 android-maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
@@ -106,11 +108,15 @@ shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shi
 
 #firebase
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
-#lottie
-lottiefiles = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
-play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+
+#lottie
+lottiefiles = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 androidx-ui-desktop = { group = "androidx.compose.ui", name = "ui-desktop", version.ref = "uiDesktop" }
 
 [plugins]

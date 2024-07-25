@@ -35,4 +35,9 @@
     <string name="google_maps_key" translatable="false">AIzaSyAXVhPEduEOApU901IVOaZtsnMRiT8IyME</string>
     <string name="text_retry">Retry</string>
     <string name="notification">Notification</string>
+    <string name="text_trash_full">Your trash bin in TPS 002 is full.</string>
+    <string name="text_trash_avoid">Please empty it to avoid overflow!</string>
+    <string name="reminder">Reminder!</string>
+    <string name="mark_as_read">Mark as Read</string>
+    <string name="error_notif">Error Notification</string>
 </resources>

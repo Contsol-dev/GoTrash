@@ -6,5 +6,7 @@ data class Trash(
     val distavg: Double = 0.0,
     val distvl53l0x: Double = 0.0,
     val trashheight: Double = 0.0,
-    val volume: Double = 0.0
+    val volume: Double = 0.0,
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 )

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
-import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -17,15 +16,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.adinda.gotrash.R
-import com.adinda.gotrash.data.local.model.Notification
-import com.adinda.gotrash.data.local.room.NotificationDatabase
 import com.adinda.gotrash.databinding.FragmentHomeBinding
 import com.adinda.gotrash.utils.DateUtils
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.Instant
@@ -35,6 +31,8 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var pieChart: PieChart
     private var notificationSent = false // Flag to track notification state
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
 
     private val requestLocationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -71,7 +69,8 @@ class HomeFragment : Fragment() {
                 if (it != null) {
                     val currentVolume = it.volume.toFloat()
                     val maxVolume = 6000f // Example max value
-
+                    latitude = it.latitude
+                    longitude = it.longitude
                     statusValue.text = String.format("%.1f", currentVolume) + " Cm³"
                     updatePieChart(currentVolume, maxVolume)
 
@@ -81,28 +80,19 @@ class HomeFragment : Fragment() {
                     statusText.visibility = View.VISIBLE
                     statusSubtext.visibility = View.VISIBLE
 
-                    // Check volume range and create notification if within range
-                    if (currentVolume >= 3000 && currentVolume <= maxVolume) {
-                        if (!notificationSent) {
-                            createNotification("Reminder!!", "Your trash bin in TPS 001 is full.")
-                            notificationSent = true
-                        }
-                    } else {
-                        notificationSent = false
-                    }
+//                    // Check volume range and create notification if within range
+//                    if (currentVolume >= 3000 && currentVolume <= maxVolume) {
+//                        if (!notificationSent) {
+//                            createNotification("Reminder!!", "Your trash bin in TPS 001 is full.")
+//                            notificationSent = true
+//                        }
+//                    } else {
+//                        notificationSent = false
+//                    }
                 }
 
                 pbLoadingLogin.visibility = View.GONE // Hide loading state after processing
             }
-        }
-    }
-
-    private fun createNotification(title: String, message: String) {
-        lifecycleScope.launch {
-            val currentTimeDate = DateUtils.formatDate(Instant.now().toString())
-            val currentTime = DateUtils.formatTime(Instant.now().toString())
-            val notification = Notification(title = title, message = message, time = "$currentTimeDate $currentTime")
-            NotificationDatabase.getDatabase(requireContext()).notificationDao().insert(notification)
         }
     }
 
@@ -149,7 +139,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupMapClickListener() {
-        binding.mapCard.setOnClickListener {
+        val clickListener = View.OnClickListener {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -159,6 +149,8 @@ class HomeFragment : Fragment() {
                 requestLocationPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
             }
         }
+        binding.pickupText.setOnClickListener(clickListener)
+        binding.mapImage.setOnClickListener(clickListener)
     }
 
     private fun checkAndEnableGPS() {
@@ -174,8 +166,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun openGoogleMaps() {
-        val latitude = -7.782167 // Replace with the desired latitude
-        val longitude = 110.415181 // Replace with the desired longitude
         val gmmIntentUri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
